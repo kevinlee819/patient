@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myzy.patient.patient.mapper.PatientInfoMapper">
+    
+    <select id="queryPageVO" resultType="com.myzy.patient.patient.entity.patientInfo.QueryPatientInfoPage">
+        SELECT id,name,sex,birth,is_insurance,contact_type,home_phone,address,province,city,nation
+        from patient_info
+    </select>
+
+
+    <select id="queryPage" resultType="com.myzy.patient.patient.entity.PatientInfo">
+        SELECT A.*
+        FROM patient_info A
+        <where>
+            <if test="query.id != null">
+                AND A.id = #{query.id}
+            </if>
+            <if test="query.name != null and query.name != ''">
+                AND A.name LIKE CONCAT('%',#{query.name},'%')
+            </if>
+            <if test="query.sex != null and query.name != ''">
+                AND A.sex = #{query.sex}
+            </if>
+            <if test="query.birthStart != null  ">
+                AND A.birth &gt;= #{query.birthStart}
+            </if>
+            <if test="query.birthEnd != null ">
+                AND A.birth &lt;= #{query.birthEnd}
+            </if>
+            <if test="query.isInsurance != null and query.name != ''">
+                AND A.is_insurance = #{query.isInsurance}
+            </if>
+            <if test="query.contactType != null and query.contactType != ''">
+                AND A.contact_type LIKE CONCAT('%',#{query.contactType},'%')
+            </if>
+            <if test="query.homePhone != null and query.homePhone != ''">
+                AND A.home_phone LIKE CONCAT('%',#{query.homePhone},'%')
+            </if>
+            <if test="query.address != null and query.address != ''">
+                AND A.address LIKE CONCAT('%',#{query.address},'%')
+            </if>
+            <if test="query.province != null and query.province != ''">
+                AND A.province = #{query.province}
+            </if>
+            <if test="query.city != null and query.city != ''">
+                AND A.city = #{query.city}
+            </if>
+            <if test="query.nation != null and query.nation != ''">
+                AND A.nation = #{query.nation}
+            </if>
+            <if test="query.inputPeople != null and query.inputPeople">
+                AND A.input_people LIKE CONCAT('%',#{query.inputPeople},'%')
+            </if>
+            <if test="query.startTime != null ">
+                AND A.birth &gt;= #{query.startTime}
+            </if>
+            <if test="query.endTime != null ">
+                AND A.birth &lt;= #{query.endTime}
+            </if>
+        </where>
+        GROUP BY A.id
+    </select>
+
+    <select id="queryPageByCreater" resultType="com.myzy.patient.patient.entity.PatientInfo">
+        SELECT A.*
+        FROM patient_info A
+        <where>
+            <if test="query.id != null">
+                AND A.id = #{query.id}
+            </if>
+            <if test="query.name != null and query.name != ''">
+                AND A.name LIKE CONCAT('%',#{query.name},'%')
+            </if>
+            <if test="query.sex != null and query.name != ''">
+                AND A.sex = #{query.sex}
+            </if>
+            <if test="query.birthStart != null  ">
+                AND A.birth &gt;= #{query.birthStart}
+            </if>
+            <if test="query.birthEnd != null ">
+                AND A.birth &lt;= #{query.birthEnd}
+            </if>
+            <if test="query.isInsurance != null and query.name != ''">
+                AND A.is_insurance = #{query.isInsurance}
+            </if>
+            <if test="query.contactType != null and query.contactType != ''">
+                AND A.contact_type LIKE CONCAT('%',#{query.contactType},'%')
+            </if>
+            <if test="query.homePhone != null and query.homePhone != ''">
+                AND A.home_phone LIKE CONCAT('%',#{query.homePhone},'%')
+            </if>
+            <if test="query.address != null and query.address != ''">
+                AND A.address LIKE CONCAT('%',#{query.address},'%')
+            </if>
+            <if test="query.province != null and query.province != ''">
+                AND A.province = #{query.province}
+            </if>
+            <if test="query.city != null and query.city != ''">
+                AND A.city = #{query.city}
+            </if>
+            <if test="query.nation != null and query.nation != ''">
+                AND A.nation = #{query.nation}
+            </if>
+            <if test="query.inputPeople != null and query.inputPeople">
+                AND A.input_people LIKE CONCAT('%',#{query.inputPeople},'%')
+            </if>
+            <if test="query.startTime != null ">
+                AND A.birth &gt;= #{query.startTime}
+            </if>
+            <if test="query.endTime != null ">
+                AND A.birth &lt;= #{query.endTime}
+            </if>
+            <if test="createName != '' and  createName != null">
+                AND A.create_people = #{createName}
+            </if>
+        </where>
+        GROUP BY A.id
+    </select>
+
+
+
+    <select id="queryPatientBasicInfo" resultType="com.myzy.patient.patient.entity.PatientInfo">
+        SELECT A.*
+        FROM patient_info A
+        <where>
+            <if test="query.id != null">
+                AND A.id = #{query.id}
+            </if>
+            <if test="query.name != null and query.name != ''">
+                AND A.name LIKE CONCAT('%',#{query.name},'%')
+            </if>
+            <if test="query.sex != null and query.name != ''">
+                AND A.sex = #{query.sex}
+            </if>
+            <if test="query.birthStart != null  ">
+                AND A.birth &gt;= #{query.birthStart}
+            </if>
+            <if test="query.birthEnd != null ">
+                AND A.birth &lt;= #{query.birthEnd}
+            </if>
+            <if test="query.isInsurance != null and query.name != ''">
+                AND A.is_insurance = #{query.isInsurance}
+            </if>
+            <if test="query.contactType != null and query.contactType != ''">
+                AND A.contact_type LIKE CONCAT('%',#{query.contactType},'%')
+            </if>
+            <if test="query.homePhone != null and query.homePhone != ''">
+                AND A.home_phone LIKE CONCAT('%',#{query.homePhone},'%')
+            </if>
+            <if test="query.address != null and query.address != ''">
+                AND A.address LIKE CONCAT('%',#{query.address},'%')
+            </if>
+            <if test="query.province != null and query.province != ''">
+                AND A.province = #{query.province}
+            </if>
+            <if test="query.city != null and query.city != ''">
+                AND A.city = #{query.city}
+            </if>
+            <if test="query.nation != null and query.nation != ''">
+                AND A.nation = #{query.nation}
+            </if>
+            <if test="query.inputPeople != null and query.inputPeople">
+                AND A.input_people LIKE CONCAT('%',#{query.inputPeople},'%')
+            </if>
+            <if test="query.startTime != null ">
+                AND A.birth &gt;= #{query.startTime}
+            </if>
+            <if test="query.endTime != null ">
+                AND A.birth &lt;= #{query.endTime}
+            </if>
+        </where>
+        GROUP BY A.id
+    </select>
+
+    <select id="queryPatientBasicInfoByCreater" resultType="com.myzy.patient.patient.entity.PatientInfo">
+        SELECT A.*
+        FROM patient_info A
+        <where>
+            <if test="query.id != null">
+                AND A.id = #{query.id}
+            </if>
+            <if test="query.name != null and query.name != ''">
+                AND A.name LIKE CONCAT('%',#{query.name},'%')
+            </if>
+            <if test="query.sex != null and query.name != ''">
+                AND A.sex = #{query.sex}
+            </if>
+            <if test="query.birthStart != null  ">
+                AND A.birth &gt;= #{query.birthStart}
+            </if>
+            <if test="query.birthEnd != null ">
+                AND A.birth &lt;= #{query.birthEnd}
+            </if>
+            <if test="query.isInsurance != null and query.name != ''">
+                AND A.is_insurance = #{query.isInsurance}
+            </if>
+            <if test="query.contactType != null and query.contactType != ''">
+                AND A.contact_type LIKE CONCAT('%',#{query.contactType},'%')
+            </if>
+            <if test="query.homePhone != null and query.homePhone != ''">
+                AND A.home_phone LIKE CONCAT('%',#{query.homePhone},'%')
+            </if>
+            <if test="query.address != null and query.address != ''">
+                AND A.address LIKE CONCAT('%',#{query.address},'%')
+            </if>
+            <if test="query.province != null and query.province != ''">
+                AND A.province = #{query.province}
+            </if>
+            <if test="query.city != null and query.city != ''">
+                AND A.city = #{query.city}
+            </if>
+            <if test="query.nation != null and query.nation != ''">
+                AND A.nation = #{query.nation}
+            </if>
+            <if test="query.inputPeople != null and query.inputPeople">
+                AND A.input_people LIKE CONCAT('%',#{query.inputPeople},'%')
+            </if>
+            <if test="query.startTime != null ">
+                AND A.birth &gt;= #{query.startTime}
+            </if>
+            <if test="query.endTime != null ">
+                AND A.birth &lt;= #{query.endTime}
+            </if>
+            <if test="createName != '' and  createName != null">
+                AND A.create_people = #{createName}
+            </if>
+        </where>
+        GROUP BY A.id
+    </select>
+
+
+    <insert id="insertOne" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO `patient`.`patient_info` ( `name`, `sex`, `birth`, `is_insurance`, `contact_type`, `home_phone`, `address`, `province`, `city`, `nation`, `input_people`, `input_date`, `create_people`, `create_date`) VALUES (#{patient.name}, #{patient.sex}, #{patient.birth}, #{patient.isInsurance}, #{patient.contactType}, #{patient.homePhone}, #{patient.address}, #{patient.province}, #{patient.city}, #{patient.nation}, #{patient.inputPeople}, #{patient.inputDate}, #{patient.createPeople}, #{patient.createDate});
+    </insert>
+</mapper>

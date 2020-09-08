@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myzy.patient.system.mapper.SysRegionMapper">
+    
+    <select id="queryPage" resultType="com.myzy.patient.system.entity.SysRegion">
+        SELECT * FROM sys_region
+        <where>
+            <if test="query.parentId != null">
+                AND parent_id = #{query.parentId}
+            </if>
+            <if test="query.name != null and query.name != ''">
+                AND name LIKE CONCAT('%',#{query.name},'%')
+            </if>
+            <if test="query.level != null">
+                AND level = #{query.level}
+            </if>
+            <if test="query.postalCode != null and query.postalCode != ''">
+                AND postal_code LIKE CONCAT('%',#{query.postalCode},'%')
+            </if>
+            <if test="query.areaNumber != null and query.areaNumber != ''">
+                AND area_number LIKE CONCAT('%',#{query.areaNumber},'%')
+            </if>
+        </where>
+    </select>
+    
+</mapper>

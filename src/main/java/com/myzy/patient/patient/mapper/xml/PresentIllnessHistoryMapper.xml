@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myzy.patient.patient.mapper.PresentIllnessHistoryMapper">
+
+    <select id="selectByPatientId" resultType="com.myzy.patient.patient.entity.PresentIllnessHistory">
+        SELECT * from
+        present_illness_history where patient_id = #{patientId}
+    </select>
+</mapper>
+

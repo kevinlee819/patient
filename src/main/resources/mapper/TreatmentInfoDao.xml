@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=".dao.TreatmentInfoDao">
+
+    <resultMap type=".entity.TreatmentInfo" id="TreatmentInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="patientId" column="patient_id" jdbcType="INTEGER"/>
+        <result property="drugGroup" column="drug_group" jdbcType="VARCHAR"/>
+        <result property="adaptDisease" column="adapt_disease" jdbcType="INTEGER"/>
+        <result property="confirmHospital" column="confirm_hospital" jdbcType="VARCHAR"/>
+        <result property="confirmDoctor" column="confirm_doctor" jdbcType="VARCHAR"/>
+        <result property="buyMedicineHospital" column="buy_medicine_hospital" jdbcType="VARCHAR"/>
+        <result property="confirmTime" column="confirm_time" jdbcType="TIMESTAMP"/>
+        <result property="unionCure" column="union_cure" jdbcType="VARCHAR"/>
+        <result property="firstService" column="first_service" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TreatmentInfoMap">
+        select id,
+               patient_id,
+               drug_group,
+               adapt_disease,
+               confirm_hospital,
+               confirm_doctor,
+               buy_medicine_hospital,
+               confirm_time,
+               union_cure,
+               first_service
+        from patient.treatment_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TreatmentInfoMap">
+        select id,
+               patient_id,
+               drug_group,
+               adapt_disease,
+               confirm_hospital,
+               confirm_doctor,
+               buy_medicine_hospital,
+               confirm_time,
+               union_cure,
+               first_service
+        from patient.treatment_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TreatmentInfoMap">
+        select
+        id, patient_id, drug_group, adapt_disease, confirm_hospital, confirm_doctor, buy_medicine_hospital,
+        confirm_time, union_cure, first_service
+        from patient.treatment_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="patientId != null">
+                and patient_id = #{patientId}
+            </if>
+            <if test="drugGroup != null and drugGroup != ''">
+                and drug_group = #{drugGroup}
+            </if>
+            <if test="adaptDisease != null">
+                and adapt_disease = #{adaptDisease}
+            </if>
+            <if test="confirmHospital != null and confirmHospital != ''">
+                and confirm_hospital = #{confirmHospital}
+            </if>
+            <if test="confirmDoctor != null and confirmDoctor != ''">
+                and confirm_doctor = #{confirmDoctor}
+            </if>
+            <if test="buyMedicineHospital != null and buyMedicineHospital != ''">
+                and buy_medicine_hospital = #{buyMedicineHospital}
+            </if>
+            <if test="confirmTime != null">
+                and confirm_time = #{confirmTime}
+            </if>
+            <if test="unionCure != null and unionCure != ''">
+                and union_cure = #{unionCure}
+            </if>
+            <if test="firstService != null and firstService != ''">
+                and first_service = #{firstService}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into patient.treatment_info (patient_id,
+                                            drug_group,
+                                            adapt_disease,
+                                            confirm_hospital,
+                                            confirm_doctor,
+                                            buy_medicine_hospital,
+                                            confirm_time,
+                                            union_cure,
+                                            first_service)
+        values (#{patientId},
+                #{drugGroup},
+                #{adaptDisease},
+                #{confirmHospital},
+                #{confirmDoctor},
+                #{buyMedicineHospital},
+                #{confirmTime},
+                #{unionCure},
+                #{firstService})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update patient.treatment_info
+        <set>
+            <if test="patientId != null">
+                patient_id = #{patientId},
+            </if>
+            <if test="drugGroup != null and drugGroup != ''">
+                drug_group = #{drugGroup},
+            </if>
+            <if test="adaptDisease != null">
+                adapt_disease = #{adaptDisease},
+            </if>
+            <if test="confirmHospital != null and confirmHospital != ''">
+                confirm_hospital = #{confirmHospital},
+            </if>
+            <if test="confirmDoctor != null and confirmDoctor != ''">
+                confirm_doctor = #{confirmDoctor},
+            </if>
+            <if test="buyMedicineHospital != null and buyMedicineHospital != ''">
+                buy_medicine_hospital = #{buyMedicineHospital},
+            </if>
+            <if test="confirmTime != null">
+                confirm_time = #{confirmTime},
+            </if>
+            <if test="unionCure != null and unionCure != ''">
+                union_cure = #{unionCure},
+            </if>
+            <if test="firstService != null and firstService != ''">
+                first_service = #{firstService},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from patient.treatment_info
+        where id = #{id}
+    </delete>
+
+</mapper>
