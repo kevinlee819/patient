@@ -2,7 +2,6 @@ server:
   port: 8098
 
 uploadDir: D:/patient/upload/
-
 logback:
   path: D:/patient/logs/
   level: info

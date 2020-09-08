@@ -7,14 +7,14 @@ spring:
       maxRequestSize: 100MB
   datasource:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://139.186.130.231:3306/patient?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+      url: jdbc:mysql://127.0.0.1:3306/patient?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
       username: root
-      password: Myjoyo@202008
+      password: root
   redis:
     database: 1
-    host: 39.105.74.194
+    host: 127.0.0.1
     port: 6379
-    password: ld840401
+    password: root
 
 mybatisPlus:
   mapperLocations: classpath:**/mapper/xml/*.xml
